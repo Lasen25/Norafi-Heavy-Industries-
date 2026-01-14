@@ -1,111 +1,1523 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Norafi Heavy Industries</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Norafi Heavy Industries - Advanced industrial systems, aerospace engineering, and strategic energy solutions">
+  <meta name="keywords" content="engineering, aerospace, defense, manufacturing, energy systems, industrial technology">
+  <meta name="author" content="Norafi Heavy Industries">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Norafi Heavy Industries - Engineering Strategic Power">
+  <meta property="og:description" content="Advanced industrial systems and aerospace-grade engineering solutions">
+  <meta property="og:type" content="website">
+  
+  <title>Norafi Heavy Industries | Engineering Strategic Power</title>
+  
+  <!-- Preload critical resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
+  
+  <!-- External Fonts with fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  </noscript>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0b0e13;
-      color: #e6e6e6;
-      line-height: 1.6;
+    /* CSS Variables for consistent theming */
+    :root {
+      /* Color Palette */
+      --color-background: #0b0e13;
+      --color-background-alt: #111827;
+      --color-surface: #1a1f2e;
+      --color-border: #1f2933;
+      --color-border-light: #2d3748;
+      
+      --color-text-primary: #ffffff;
+      --color-text-secondary: #e6e6e6;
+      --color-text-tertiary: #b8bcc6;
+      --color-text-muted: #8a8f9c;
+      
+      --color-accent: #3b82f6;
+      --color-accent-hover: #2563eb;
+      --color-accent-focus: #1d4ed8;
+      
+      /* Typography */
+      --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      
+      --font-size-xs: 0.75rem;   /* 12px */
+      --font-size-sm: 0.875rem;  /* 14px */
+      --font-size-base: 1rem;    /* 16px */
+      --font-size-lg: 1.125rem;  /* 18px */
+      --font-size-xl: 1.25rem;   /* 20px */
+      --font-size-2xl: 1.5rem;   /* 24px */
+      --font-size-3xl: 1.875rem; /* 30px */
+      --font-size-4xl: 2.25rem;  /* 36px */
+      --font-size-5xl: 3rem;     /* 48px */
+      --font-size-6xl: 3.75rem;  /* 60px */
+      
+      /* Spacing */
+      --spacing-xs: 0.25rem;   /* 4px */
+      --spacing-sm: 0.5rem;    /* 8px */
+      --spacing-md: 1rem;      /* 16px */
+      --spacing-lg: 1.5rem;    /* 24px */
+      --spacing-xl: 2rem;      /* 32px */
+      --spacing-2xl: 3rem;     /* 48px */
+      --spacing-3xl: 4rem;     /* 64px */
+      --spacing-4xl: 6rem;     /* 96px */
+      
+      /* Border Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      
+      /* Transitions */
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+      --transition-slow: 350ms ease;
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      
+      /* Z-index layers */
+      --z-dropdown: 10;
+      --z-sticky: 20;
+      --z-fixed: 30;
+      --z-modal: 40;
+      --z-popover: 50;
+      --z-tooltip: 60;
     }
+    
+    /* CSS Reset with Modern Best Practices */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    
+    /* Improved focus styles for accessibility */
+    :focus-visible {
+      outline: 2px solid var(--color-accent-focus);
+      outline-offset: 2px;
+    }
+    
+    /* Skip to main content link for keyboard users */
+    .skip-to-content {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--color-accent);
+      color: white;
+      padding: var(--spacing-sm) var(--spacing-md);
+      text-decoration: none;
+      z-index: var(--z-tooltip);
+      transition: top var(--transition-base);
+    }
+    
+    .skip-to-content:focus {
+      top: 0;
+    }
+    
+    body {
+      font-family: var(--font-family-primary);
+      background-color: var(--color-background);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Typography System */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--color-text-primary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    h1 {
+      font-size: var(--font-size-2xl);
+      letter-spacing: 0.5px;
+    }
+    
+    h2 {
+      font-size: var(--font-size-5xl);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    h3 {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    p {
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text-tertiary);
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    
+    a:hover {
+      color: var(--color-accent);
+    }
+    
+    /* Header Styles */
     header {
-      background: linear-gradient(180deg, #0b0e13, #111827);
-      padding: 24px 64px;
+      background: linear-gradient(180deg, var(--color-background), var(--color-background-alt));
+      padding: var(--spacing-lg) var(--spacing-3xl);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #1f2933;
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
-    header h1 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 1px;
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
     }
-    nav a {
-      margin-left: 32px;
-      text-decoration: none;
-      color: #cfd3dc;
-      font-weight: 500;
+    
+    .logo-icon {
+      font-size: var(--font-size-xl);
     }
-    nav a:hover { color: #ffffff; }
+    
+    /* Navigation */
+    .nav-primary {
+      display: flex;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+    
+    .nav-link {
+      font-weight: 600;
+      color: var(--color-text-tertiary);
+      position: relative;
+      padding: var(--spacing-xs) 0;
+    }
+    
+    .nav-link:hover,
+    .nav-link:focus {
+      color: var(--color-text-primary);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width var(--transition-base);
+    }
+    
+    .nav-link:hover::after,
+    .nav-link:focus::after {
+      width: 100%;
+    }
+    
+    /* Mobile Navigation Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text-tertiary);
+      cursor: pointer;
+      padding: var(--spacing-sm);
+      font-size: var(--font-size-xl);
+    }
+    
+    /* Hero Section */
     .hero {
-      padding: 120px 64px;
+      padding: var(--spacing-4xl) var(--spacing-3xl);
       max-width: 1400px;
-      margin: auto;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
     }
-    .hero h2 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      margin-bottom: 24px;
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      z-index: -1;
     }
-    .hero p {
+    
+    .hero-content {
+      max-width: 800px;
+    }
+    
+    .hero-subtitle {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-2xl);
       max-width: 620px;
-      font-size: 1.1rem;
-      color: #b8bcc6;
     }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--color-accent);
+      color: white;
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      margin-top: var(--spacing-lg);
+    }
+    
+    .cta-button:hover,
+    .cta-button:focus {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .cta-button:active {
+      transform: translateY(0);
+    }
+    
+    /* Section Styles */
     .section {
-      padding: 96px 64px;
+      padding: var(--spacing-4xl) var(--spacing-3xl);
       max-width: 1400px;
-      margin: auto;
+      margin: 0 auto;
     }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: var(--spacing-3xl);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--color-accent);
+      margin: var(--spacing-md) auto;
+    }
+    
+    /* Grid System */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-xl);
+      margin-top: var(--spacing-2xl);
     }
+    
+    /* Card Component */
     .card {
-      background: #111827;
-      padding: 32px;
-      border-radius: 12px;
-      border: 1px solid #1f2933;
+      background: var(--color-background-alt);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition-base);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
-    .card h3 {
-      margin-bottom: 12px;
-      font-size: 1.2rem;
+    
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-border-light);
+      box-shadow: var(--shadow-xl);
     }
-    .card p { color: #b8bcc6; }
+    
+    .card-icon {
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--spacing-md);
+      display: inline-block;
+    }
+    
+    .card-title {
+      color: var(--color-text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .card-content {
+      color: var(--color-text-tertiary);
+      flex-grow: 1;
+    }
+    
+    /* Footer */
     footer {
-      border-top: 1px solid #1f2933;
-      padding: 32px 64px;
+      border-top: 1px solid var(--color-border);
+      padding: var(--spacing-xl) var(--spacing-3xl);
       text-align: center;
-      color: #8a8f9c;
+      color: var(--color-text-muted);
+      margin-top: auto;
+    }
+    
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .copyright {
+      font-size: var(--font-size-sm);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      header {
+        padding: var(--spacing-lg) var(--spacing-xl);
+      }
+      
+      .hero,
+      .section {
+        padding: var(--spacing-3xl) var(--spacing-xl);
+      }
+      
+      h2 {
+        font-size: var(--font-size-4xl);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      :root {
+        --spacing-3xl: 2rem;
+        --spacing-4xl: 3rem;
+      }
+      
+      .mobile-menu-toggle {
+        display: block;
+      }
+      
+      .nav-primary {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: var(--color-background-alt);
+        flex-direction: column;
+        padding: var(--spacing-xl);
+        gap: var(--spacing-lg);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-base);
+        border-bottom: 1px solid var(--color-border);
+      }
+      
+      .nav-primary.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .nav-link {
+        font-size: var(--font-size-lg);
+      }
+      
+      h2 {
+        font-size: var(--font-size-3xl);
+      }
+      
+      .hero {
+        text-align: center;
+      }
+      
+      .hero::before {
+        width: 100%;
+        right: -50%;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header,
+      .hero,
+      .section,
+      footer {
+        padding-left: var(--spacing-lg);
+        padding-right: var(--spacing-lg);
+      }
+      
+      h2 {
+        font-size: var(--font-size-2xl);
+      }
+      
+      .hero-subtitle {
+        font-size: var(--font-size-base);
+      }
+    }
+    
+    /* Print Styles */
+    @media print {
+      *,
+      *::before,
+      *::after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+      
+      header,
+      footer {
+        border: 1px solid #ddd;
+      }
+      
+      .card {
+        border: 1px solid #ddd;
+        break-inside: avoid;
+      }
+    }
+    
+    /* Utility Classes */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .mt-1 { margin-top: var(--spacing-xs); }
+    .mt-2 { margin-top: var(--spacing-sm); }
+    .mt-3 { margin-top: var(--spacing-md); }
+    .mt-4 { margin-top: var(--spacing-lg); }
+    .mt-5 { margin-top: var(--spacing-xl); }
+    
+    /* Animation Classes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    /* JavaScript-enabled styles */
+    .js-enabled .fade-in {
+      opacity: 0;
+      animation-fill-mode: forwards;
     }
   </style>
 </head>
-<body><header>
-  <h1>NORAFI HEAVY INDUSTRIES</h1>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Programs</a>
-    <a href="#">Technology</a>
-    <a href="#">About</a>
-  </nav>
-</header><section class="hero">
-  <h2>Engineering Strategic Power</h2>
-  <p>
-    Norafi Heavy Industries is focused on advanced industrial systems, aerospace-grade engineering,
-    energy infrastructure, and next-generation defense-adjacent technologies.
-  </p>
-</section><section class="section">
-  <div class="grid">
-    <div class="card">
-      <h3>Advanced Manufacturing</h3>
-      <p>High-precision industrial systems designed for resilience, scalability, and sovereign capability.</p>
+<body class="js-enabled">
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-to-content">
+    Skip to main content
+  </a>
+  
+  <header role="banner">
+    <div class="logo">
+      <span class="logo-icon" aria-hidden="true">⚙️</span>
+      <h1>NORAFI HEAVY INDUSTRIES</h1>
     </div>
-    <div class="card">
-      <h3>Energy Systems</h3>
-      <p>Research into nuclear, thorium-based, and grid-scale energy solutions for long-term stability.</p>
+    
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+      ☰
+    </button>
+    
+    <nav id="primary-navigation" class="nav-primary" role="navigation" aria-label="Primary navigation">
+      <a href="#home" class="nav-link" aria-current="page">Home</a>
+      <a href="#programs" class="nav-link">Programs</a>
+      <a href="#technology" class="nav-link">Technology</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
+  
+  <main id="main-content" role="main">
+    <section class="hero fade-in" id="home">
+      <div class="hero-content">
+        <h2>Engineering Strategic Power</h2>
+        <p class="hero-subtitle">
+          Norafi Heavy Industries is focused on advanced industrial systems, aerospace-grade engineering,
+          energy infrastructure, and next-generation defense-adjacent technologies.
+        </p>
+        <button class="cta-button" aria-label="Learn more about our technologies">
+          Explore Our Technologies
+        </button>
+      </div>
+    </section>
+    
+    <section class="section fade-in" id="programs" aria-labelledby="programs-title">
+      <h2 id="programs-title" class="section-title">Core Capabilities</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🏭</div>
+          <h3 class="card-title">Advanced Manufacturing</h3>
+          <p class="card-content">
+            High-precision industrial systems designed for resilience, scalability, and sovereign capability.
+            Our facilities employ cutting-edge automation and quality control processes.
+          </p>
+        </article>
+        
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">⚡</div>
+          <h3 class="card-title">Energy Systems</h3>
+          <p class="card-content">
+            Research into nuclear, thorium-based, and grid-scale energy solutions for long-term stability.
+            Pioneering sustainable power generation for the next century.
+          </p>
+        </article>
+        
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🚀</div>
+          <h3 class="card-title">Aerospace & Defense</h3>
+          <p class="card-content">
+            Concept development for aerospace platforms, propulsion systems, and strategic hardware.
+            From atmospheric craft to orbital infrastructure.
+          </p>
+        </article>
+        
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🔬</div>
+          <h3 class="card-title">Research & Development</h3>
+          <p class="card-content">
+            Dedicated R&D divisions exploring materials science, quantum computing applications,
+            and advanced propulsion methodologies.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+  
+  <footer role="contentinfo">
+    <div class="footer-content">
+      <p class="copyright">
+        © 2026 Norafi Heavy Industries. All Rights Reserved.<br>
+        <small>Strategic Innovation Division</small>
+      </p>
     </div>
-    <div class="card">
-      <h3>Aerospace & Defense</h3>
-      <p>Concept development for aerospace platforms, propulsion systems, and strategic hardware.</p>
+  </footer>
+  
+  <script>
+    // Enhance the user experience with progressive enhancement
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add JS-enabled class for CSS animations
+      document.body.classList.add('js-enabled');
+      
+      // Mobile Navigation Toggle
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      const primaryNav = document.querySelector('.nav-primary');
+      
+      if (mobileToggle && primaryNav) {
+        mobileToggle.addEventListener('click', () => {
+          const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+          mobileToggle.setAttribute('aria-expanded', !isExpanded);
+          primaryNav.classList.toggle('active');
+          mobileToggle.textContent = isExpanded ? '☰' : '✕';
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+          if (!primaryNav.contains(event.target) && !mobileToggle.contains(event.target)) {
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            primaryNav.classList.remove('active');
+            mobileToggle.textContent = '☰';
+          }
+        });
+      }
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          
+          if (href === '#') return;
+          
+          e.preventDefault();
+          const targetElement = document.querySelector(href);
+          
+          if (targetElement) {
+            // Close mobile menu if open
+            if (primaryNav && primaryNav.classList.contains('active')) {
+              mobileToggle.setAttribute('aria-expanded', 'false');
+              primaryNav.classList.remove('active');
+              mobileToggle.textContent = '☰';
+            }
+            
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            
+            // Update URL without page jump
+            history.pushState(null, null, href);
+          }
+        });
+      });
+      
+      // CTA Button Interaction
+      const ctaButton = document.querySelector('.cta-button');
+      if (ctaButton) {
+        ctaButton.addEventListener('click', () => {
+          // Smooth scroll to programs section
+          const programsSection = document.querySelector('#programs');
+          if (programsSection) {
+            programsSection.scrollIntoView({ behavior: 'smooth' });
+          }
+          
+          // Optional: Analytics event tracking
+          console.log('CTA button clicked - tracking event');
+        });
+      }
+      
+      // Card hover effects for touch devices
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.addEventListener('touchstart', () => {
+          card.classList.add('hover');
+        }, { passive: true });
+        
+        card.addEventListener('touchend', () => {
+          card.classList.remove('hover');
+        }, { passive: true });
+      });
+      
+      // Performance optimization: Lazy load animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      
+      // Add current year to copyright
+      const yearElement = document.querySelector('.copyright');
+      if (yearElement) {
+        const currentYear = new Date().getFullYear();
+        yearElement.innerHTML = yearElement.innerHTML.replace('2026', currentYear);
+      }
+    });
+    
+    // Handle page visibility changes
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        console.log('Page is now visible');
+      }
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Norafi Heavy Industries - Advanced industrial systems, aerospace engineering, and strategic energy solutions">
+  <meta name="keywords" content="engineering, aerospace, defense, manufacturing, energy systems, industrial technology">
+  <meta name="author" content="Norafi Heavy Industries">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Norafi Heavy Industries - Engineering Strategic Power">
+  <meta property="og:description" content="Advanced industrial systems and aerospace-grade engineering solutions">
+  <meta property="og:type" content="website">
+  
+  <title>Norafi Heavy Industries | Engineering Strategic Power</title>
+  
+  <!-- Preload critical resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
+  
+  <!-- External Fonts with fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  </noscript>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  
+  <style>
+    /* CSS Variables for consistent theming */
+    :root {
+      /* Color Palette */
+      --color-background: #0b0e13;
+      --color-background-alt: #111827;
+      --color-surface: #1a1f2e;
+      --color-border: #1f2933;
+      --color-border-light: #2d3748;
+      
+      --color-text-primary: #ffffff;
+      --color-text-secondary: #e6e6e6;
+      --color-text-tertiary: #b8bcc6;
+      --color-text-muted: #8a8f9c;
+      
+      --color-accent: #3b82f6;
+      --color-accent-hover: #2563eb;
+      --color-accent-focus: #1d4ed8;
+      
+      /* Typography */
+      --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      
+      --font-size-xs: 0.75rem;   /* 12px */
+      --font-size-sm: 0.875rem;  /* 14px */
+      --font-size-base: 1rem;    /* 16px */
+      --font-size-lg: 1.125rem;  /* 18px */
+      --font-size-xl: 1.25rem;   /* 20px */
+      --font-size-2xl: 1.5rem;   /* 24px */
+      --font-size-3xl: 1.875rem; /* 30px */
+      --font-size-4xl: 2.25rem;  /* 36px */
+      --font-size-5xl: 3rem;     /* 48px */
+      --font-size-6xl: 3.75rem;  /* 60px */
+      
+      /* Spacing */
+      --spacing-xs: 0.25rem;   /* 4px */
+      --spacing-sm: 0.5rem;    /* 8px */
+      --spacing-md: 1rem;      /* 16px */
+      --spacing-lg: 1.5rem;    /* 24px */
+      --spacing-xl: 2rem;      /* 32px */
+      --spacing-2xl: 3rem;     /* 48px */
+      --spacing-3xl: 4rem;     /* 64px */
+      --spacing-4xl: 6rem;     /* 96px */
+      
+      /* Border Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      
+      /* Transitions */
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+      --transition-slow: 350ms ease;
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      
+      /* Z-index layers */
+      --z-dropdown: 10;
+      --z-sticky: 20;
+      --z-fixed: 30;
+      --z-modal: 40;
+      --z-popover: 50;
+      --z-tooltip: 60;
+    }
+    
+    /* CSS Reset with Modern Best Practices */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    
+    /* Improved focus styles for accessibility */
+    :focus-visible {
+      outline: 2px solid var(--color-accent-focus);
+      outline-offset: 2px;
+    }
+    
+    /* Skip to main content link for keyboard users */
+    .skip-to-content {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--color-accent);
+      color: white;
+      padding: var(--spacing-sm) var(--spacing-md);
+      text-decoration: none;
+      z-index: var(--z-tooltip);
+      transition: top var(--transition-base);
+    }
+    
+    .skip-to-content:focus {
+      top: 0;
+    }
+    
+    body {
+      font-family: var(--font-family-primary);
+      background-color: var(--color-background);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Typography System */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--color-text-primary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    h1 {
+      font-size: var(--font-size-2xl);
+      letter-spacing: 0.5px;
+    }
+    
+    h2 {
+      font-size: var(--font-size-5xl);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    h3 {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    p {
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text-tertiary);
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    
+    a:hover {
+      color: var(--color-accent);
+    }
+    
+    /* Header Styles */
+    header {
+      background: linear-gradient(180deg, var(--color-background), var(--color-background-alt));
+      padding: var(--spacing-lg) var(--spacing-3xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .logo-icon {
+      font-size: var(--font-size-xl);
+    }
+    
+    /* Navigation */
+    .nav-primary {
+      display: flex;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+    
+    .nav-link {
+      font-weight: 600;
+      color: var(--color-text-tertiary);
+      position: relative;
+      padding: var(--spacing-xs) 0;
+    }
+    
+    .nav-link:hover,
+    .nav-link:focus {
+      color: var(--color-text-primary);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width var(--transition-base);
+    }
+    
+    .nav-link:hover::after,
+    .nav-link:focus::after {
+      width: 100%;
+    }
+    
+    /* Mobile Navigation Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text-tertiary);
+      cursor: pointer;
+      padding: var(--spacing-sm);
+      font-size: var(--font-size-xl);
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: var(--spacing-4xl) var(--spacing-3xl);
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+    }
+    
+    .hero-subtitle {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-2xl);
+      max-width: 620px;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--color-accent);
+      color: white;
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      margin-top: var(--spacing-lg);
+    }
+    
+    .cta-button:hover,
+    .cta-button:focus {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .cta-button:active {
+      transform: translateY(0);
+    }
+    
+    /* Section Styles */
+    .section {
+      padding: var(--spacing-4xl) var(--spacing-3xl);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: var(--spacing-3xl);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--color-accent);
+      margin: var(--spacing-md) auto;
+    }
+    
+    /* Grid System */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-xl);
+      margin-top: var(--spacing-2xl);
+    }
+    
+    /* Card Component */
+    .card {
+      background: var(--color-background-alt);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition-base);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-border-light);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .card-icon {
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--spacing-md);
+      display: inline-block;
+    }
+    
+    .card-title {
+      color: var(--color-text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .card-content {
+      color: var(--color-text-tertiary);
+      flex-grow: 1;
+    }
+    
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--spacing-xl) var(--spacing-3xl);
+      text-align: center;
+      color: var(--color-text-muted);
+      margin-top: auto;
+    }
+    
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .copyright {
+      font-size: var(--font-size-sm);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      header {
+        padding: var(--spacing-lg) var(--spacing-xl);
+      }
+      
+      .hero,
+      .section {
+        padding: var(--spacing-3xl) var(--spacing-xl);
+      }
+      
+      h2 {
+        font-size: var(--font-size-4xl);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      :root {
+        --spacing-3xl: 2rem;
+        --spacing-4xl: 3rem;
+      }
+      
+      .mobile-menu-toggle {
+        display: block;
+      }
+      
+      .nav-primary {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: var(--color-background-alt);
+        flex-direction: column;
+        padding: var(--spacing-xl);
+        gap: var(--spacing-lg);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-base);
+        border-bottom: 1px solid var(--color-border);
+      }
+      
+      .nav-primary.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .nav-link {
+        font-size: var(--font-size-lg);
+      }
+      
+      h2 {
+        font-size: var(--font-size-3xl);
+      }
+      
+      .hero {
+        text-align: center;
+      }
+      
+      .hero::before {
+        width: 100%;
+        right: -50%;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header,
+      .hero,
+      .section,
+      footer {
+        padding-left: var(--spacing-lg);
+        padding-right: var(--spacing-lg);
+      }
+      
+      h2 {
+        font-size: var(--font-size-2xl);
+      }
+      
+      .hero-subtitle {
+        font-size: var(--font-size-base);
+      }
+    }
+    
+    /* Print Styles */
+    @media print {
+      *,
+      *::before,
+      *::after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+      
+      header,
+      footer {
+        border: 1px solid #ddd;
+      }
+      
+      .card {
+        border: 1px solid #ddd;
+        break-inside: avoid;
+      }
+    }
+    
+    /* Utility Classes */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .mt-1 { margin-top: var(--spacing-xs); }
+    .mt-2 { margin-top: var(--spacing-sm); }
+    .mt-3 { margin-top: var(--spacing-md); }
+    .mt-4 { margin-top: var(--spacing-lg); }
+    .mt-5 { margin-top: var(--spacing-xl); }
+    
+    /* Animation Classes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    /* JavaScript-enabled styles */
+    .js-enabled .fade-in {
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+  </style>
+</head>
+<body class="js-enabled">
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-to-content">
+    Skip to main content
+  </a>
+  
+  <header role="banner">
+    <div class="logo">
+      <span class="logo-icon" aria-hidden="true">⚙️</span>
+      <h1>NORAFI HEAVY INDUSTRIES</h1>
     </div>
-  </div>
-</section><footer>
-  © 2026 Norafi Heavy Industries. All Rights Reserved.
-</footer></body>
+    
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+      ☰
+    </button>
+    
+    <nav id="primary-navigation" class="nav-primary" role="navigation" aria-label="Primary navigation">
+      <a href="#home" class="nav-link" aria-current="page">Home</a>
+      <a href="#programs" class="nav-link">Programs</a>
+      <a href="#technology" class="nav-link">Technology</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
+  
+  <main id="main-content" role="main">
+    <section class="hero fade-in" id="home">
+      <div class="hero-content">
+        <h2>Engineering Strategic Power</h2>
+        <p class="hero-subtitle">
+          Norafi Heavy Industries is focused on advanced industrial systems, aerospace-grade engineering,
+          energy infrastructure, and next-generation defense-adjacent technologies.
+        </p>
+        <button class="cta-button" aria-label="Learn more about our technologies">
+          Explore Our Technologies
+        </button>
+      </div>
+    </section>
+    
+    <section class="section fade-in" id="programs" aria-labelledby="programs-title">
+      <h2 id="programs-title" class="section-title">Core Capabilities</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🏭</div>
+          <h3 class="card-title">Advanced Manufacturing</h3>
+          <p class="card-content">
+            High-precision industrial systems designed for resilience, scalability, and sovereign capability.
+            Our facilities employ cutting-edge automation and quality control processes.
+          </p>
+        </article>
+        
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">⚡</div>
+          <h3 class="card-title">Energy Systems</h3>
+          <p class="card-content">
+            Research into nuclear, thorium-based, and grid-scale energy solutions for long-term stability.
+            Pioneering sustainable power generation for the next century.
+          </p>
+        </article>
+        
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🚀</div>
+          <h3 class="card-title">Aerospace & Defense</h3>
+          <p class="card-content">
+            Concept development for aerospace platforms, propulsion systems, and strategic hardware.
+            From atmospheric craft to orbital infrastructure.
+          </p>
+        </article>
+        
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🔬</div>
+          <h3 class="card-title">Research & Development</h3>
+          <p class="card-content">
+            Dedicated R&D divisions exploring materials science, quantum computing applications,
+            and advanced propulsion methodologies.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+  
+  <footer role="contentinfo">
+    <div class="footer-content">
+      <p class="copyright">
+        © 2026 Norafi Heavy Industries. All Rights Reserved.<br>
+        <small>Strategic Innovation Division</small>
+      </p>
+    </div>
+  </footer>
+  
+  <script>
+    // Enhance the user experience with progressive enhancement
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add JS-enabled class for CSS animations
+      document.body.classList.add('js-enabled');
+      
+      // Mobile Navigation Toggle
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      const primaryNav = document.querySelector('.nav-primary');
+      
+      if (mobileToggle && primaryNav) {
+        mobileToggle.addEventListener('click', () => {
+          const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+          mobileToggle.setAttribute('aria-expanded', !isExpanded);
+          primaryNav.classList.toggle('active');
+          mobileToggle.textContent = isExpanded ? '☰' : '✕';
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+          if (!primaryNav.contains(event.target) && !mobileToggle.contains(event.target)) {
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            primaryNav.classList.remove('active');
+            mobileToggle.textContent = '☰';
+          }
+        });
+      }
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          
+          if (href === '#') return;
+          
+          e.preventDefault();
+          const targetElement = document.querySelector(href);
+          
+          if (targetElement) {
+            // Close mobile menu if open
+            if (primaryNav && primaryNav.classList.contains('active')) {
+              mobileToggle.setAttribute('aria-expanded', 'false');
+              primaryNav.classList.remove('active');
+              mobileToggle.textContent = '☰';
+            }
+            
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            
+            // Update URL without page jump
+            history.pushState(null, null, href);
+          }
+        });
+      });
+      
+      // CTA Button Interaction
+      const ctaButton = document.querySelector('.cta-button');
+      if (ctaButton) {
+        ctaButton.addEventListener('click', () => {
+          // Smooth scroll to programs section
+          const programsSection = document.querySelector('#programs');
+          if (programsSection) {
+            programsSection.scrollIntoView({ behavior: 'smooth' });
+          }
+          
+          // Optional: Analytics event tracking
+          console.log('CTA button clicked - tracking event');
+        });
+      }
+      
+      // Card hover effects for touch devices
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.addEventListener('touchstart', () => {
+          card.classList.add('hover');
+        }, { passive: true });
+        
+        card.addEventListener('touchend', () => {
+          card.classList.remove('hover');
+        }, { passive: true });
+      });
+      
+      // Performance optimization: Lazy load animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      
+      // Add current year to copyright
+      const yearElement = document.querySelector('.copyright');
+      if (yearElement) {
+        const currentYear = new Date().getFullYear();
+        yearElement.innerHTML = yearElement.innerHTML.replace('2026', currentYear);
+      }
+    });
+    
+    // Handle page visibility changes
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        console.log('Page is now visible');
+      }
+    });
+  </script>
+</body>
 </html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOPT</title>
+
+<!-- MathJax Configuration -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<!-- Modern Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-black: #000000;
+    --bg-input: #0f0f0f;
+    --border-color: #1c1c1c;
+    --border-hover: #3a3a3a;
+    --text-main: #ffffff;
+    --thinking-grey: rgba(255,255,255,0.4);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg-black);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- Header --- */
+  header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+  }
+
+  .header-status {
+    font-size: 0.7rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff88;
+  }
+
+  /* --- Chat Area --- */
+  main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 0;
+    scroll-behavior: smooth;
+  }
+
+  main::-webkit-scrollbar { width: 6px; }
+  main::-webkit-scrollbar-track { background: transparent; }
+  main::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
+  main::-webkit-scrollbar-thumb:hover { background: #333; }
+
+  .chat-container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px; /* Increased spacing for cleaner look */
+  }
+
+  /* --- Messages --- */
+  .message {
+    display: flex;
+    width: 100%;
+    animation: fadeInUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .message.user {
+    justify-content: flex-end;
+  }
+
+  .message.ai {
+    justify-content: flex-start;
+  }
+
+  .message-content {
+    max-width: 75%;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* AI Meta Info (Thought time & Tokens) */
+  .ai-meta {
+    font-size: 0.7rem;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* AI Output Styling (Normal weight, distinct from meta) */
+  .message.ai .message-text {
+    color: #e0e0e0;
+    font-weight: 400; 
+  }
+
+  /* User Input Box Styling (More Round) */
+  .message.user .message-content {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+    border-radius: 24px 24px 6px 24px; /* Extremely round bubble */
+    color: var(--text-main);
+    font-weight: 400;
+    text-align: left;
+    backdrop-filter: blur(4px);
+  }
+
+  /* --- Thinking Animation (Symbols) --- */
+  .thinking-container {
+    display: flex;
+    align-items: center;
+    height: 28px;
+    margin-top: 4px;
+  }
+
+  .thinking {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-size: 16px;
+  }
+
+  .label {
+    color: var(--thinking-grey);
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-right: 14px;
+  }
+
+  .equation-box {
+    position: relative;
+    width: 40px; /* Narrower box for symbols */
+    height: 24px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .equation {
+    position: absolute;
+    left: 0;
+    color: var(--thinking-grey); /* Matches the label */
+    font-size: 18px;
+    opacity: 0;
+    transform: translateY(8px) scale(0.85);
+    filter: blur(4px);
+    transition: opacity 0.15s ease-out, transform 0.2s cubic-bezier(.2,.8,.2,1), filter 0.15s ease-out;
+  }
+
+  .equation.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+  .equation.exit {
+    opacity: 0;
+    transform: translateY(-8px) scale(1.08);
+    filter: blur(5px);
+  }
+
+  /* --- Welcome Screen --- */
+  .welcome-screen {
+    text-align: center;
+    padding: 15vh 24px;
+  }
+
+  .welcome-screen h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+    background: linear-gradient(180deg, #fff, #777);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .welcome-screen p {
+    color: #666;
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* --- Input Area --- */
+  footer {
+    background: linear-gradient(to top, #000 80%, transparent 100%);
+    padding: 24px;
+    padding-bottom: 32px;
+  }
+
+  .input-wrapper {
+    max-width: 768px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Modern Extremely Round Input Box */
+  .input-box {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 32px; /* More rounded */
+    padding: 16px 60px 16px 24px;
+    width: 100%;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: none;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    line-height: 1.5;
+    max-height: 200px;
+  }
+
+  .input-box:focus {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 0 1px var(--border-hover);
+  }
+
+  .input-box::placeholder {
+    color: #444;
+  }
+
+  .send-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 36px;
+    height: 36px;
+    background: var(--text-main);
+    color: var(--bg-black);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.1s ease, background 0.2s ease;
+  }
+
+  .send-btn:disabled {
+    background: #1a1a1a;
+    color: #333;
+    cursor: not-allowed;
+  }
+
+  .send-btn:not(:disabled):hover {
+    opacity: 0.85;
+  }
+  
+  .send-btn:not(:disabled):active {
+    transform: scale(0.92);
+  }
+
+  .disclaimer {
+    text-align: center;
+    font-size: 0.7rem;
+    color: #333;
+    margin-top: 14px;
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-status">
+    <div class="status-dot"></div>
+    Online
+  </div>
+</header>
+
+<main id="chatMain">
+  <div class="chat-container" id="chatContainer">
+    
+    <div class="welcome-screen" id="welcomeScreen">
+      <h1>How can I assist you today?</h1>
+      <p>TOPT is optimized for task execution and complex reasoning. Enter your query below to initiate the sequence.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="input-wrapper">
+    <textarea 
+      id="promptInput" 
+      class="input-box" 
+      placeholder="Message TOPT..." 
+      rows="1"
+    ></textarea>
+    <button id="sendBtn" class="send-btn" disabled>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </button>
+  </div>
+  <div class="disclaimer">TOPT can make mistakes. Verify critical information.</div>
+</footer>
+
+<script>
+  // --- DOM Elements ---
+  const chatContainer = document.getElementById('chatContainer');
+  const welcomeScreen = document.getElementById('welcomeScreen');
+  const promptInput = document.getElementById('promptInput');
+  const sendBtn = document.getElementById('sendBtn');
+
+  // --- Auto-resize Textarea ---
+  promptInput.addEventListener('input', () => {
+    promptInput.style.height = 'auto';
+    promptInput.style.height = promptInput.scrollHeight + 'px';
+    sendBtn.disabled = promptInput.value.trim() === '';
+  });
+
+  // --- Enter Key Listener ---
+  promptInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!sendBtn.disabled) handleSend();
+    }
+  });
+
+  sendBtn.addEventListener('click', handleSend);
+
+  // --- Chat Logic ---
+  function handleSend() {
+    const text = promptInput.value.trim();
+    if (!text) return;
+
+    // Clear welcome screen on first message
+    if (welcomeScreen) {
+      welcomeScreen.style.display = 'none';
+    }
+
+    // 1. Append User Message (Right side)
+    appendMessage('user', text);
+
+    // Clear input
+    promptInput.value = '';
+    promptInput.style.height = 'auto';
+    sendBtn.disabled = true;
+
+    // 2. Append AI Thinking Message (Left side)
+    const aiContentDiv = appendMessage('ai', '');
+    showThinkingAnimation(aiContentDiv);
+  }
+
+  function appendMessage(role, text) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${role}`;
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+    
+    if (text) {
+      const textDiv = document.createElement('div');
+      textDiv.className = 'message-text';
+      textDiv.textContent = text;
+      contentDiv.appendChild(textDiv);
+    }
+
+    msgDiv.appendChild(contentDiv);
+    chatContainer.appendChild(msgDiv);
+    scrollToBottom();
+    
+    return contentDiv;
+  }
+
+  // --- Thinking Animation Logic ---
+  let thinkingInterval = null;
+
+  function showThinkingAnimation(contentDiv) {
+    const thinkingContainer = document.createElement('div');
+    thinkingContainer.className = 'thinking-container';
+    
+    // Replaced equations with pure math symbols
+    thinkingContainer.innerHTML = `
+      <div class="thinking">
+        <span class="label">Thinking...</span>
+        <div class="equation-box">
+          <span class="equation active">\\(\\sum\\)</span>
+          <span class="equation">\\(\\int\\)</span>
+          <span class="equation">\\(\\nabla\\)</span>
+          <span class="equation">\\(\\pi\\)</span>
+          <span class="equation">\\(\\infty\\)</span>
+          <span class="equation">\\(\\partial\\)</span>
+          <span class="equation">\\(\\Delta\\)</span>
+          <span class="equation">\\(\\lambda\\)</span>
+          <span class="equation">\\(\\theta\\)</span>
+          <span class="equation">\\(\\forall\\)</span>
+        </div>
+      </div>
+    `;
+
+    contentDiv.appendChild(thinkingContainer);
+
+    // Force MathJax to typeset the new symbols
+    if (window.MathJax) {
+      window.MathJax.typesetPromise([thinkingContainer]);
+    }
+
+    const equations = thinkingContainer.querySelectorAll(".equation");
+    let current = 0;
+
+    function nextEquation() {
+      const oldEquation = equations[current];
+      oldEquation.classList.remove("active");
+      oldEquation.classList.add("exit");
+
+      current = (current + 1) % equations.length;
+      const newEquation = equations[current];
+
+      newEquation.classList.remove("exit", "active");
+      void newEquation.offsetWidth;
+      newEquation.classList.add("active");
+
+      setTimeout(() => oldEquation.classList.remove("exit"), 200);
+    }
+
+    // Speed up symbols: Cycling every 300ms
+    thinkingInterval = setInterval(nextEquation, 300);
+
+    // Capture start time
+    const startTime = performance.now();
+    const responseDelay = 2800 + Math.random() * 1200; // Random delay between 2.8s and 4.0s
+
+    // Simulate AI response
+    setTimeout(() => {
+      clearInterval(thinkingInterval);
+      thinkingContainer.remove();
+      
+      // Calculate time spent and random token count
+      const elapsed = ((performance.now() - startTime) / 1000).toFixed(1);
+      const tokens = Math.floor(Math.random() * 150) + 85; // Random tokens between 85 and 235
+      
+      // 1. Add Meta Info at the top (Grey, non-intrusive)
+      const metaDiv = document.createElement('div');
+      metaDiv.className = 'ai-meta';
+      metaDiv.innerHTML = `<span>Thought for ${elapsed}s</span> · <span>${tokens} tokens</span>`;
+      contentDiv.appendChild(metaDiv);
+
+      // 2. Add the actual response text (Normal weight, light grey)
+      const responseText = "I have processed your input through my task-oriented optimization layers. The mathematical models have converged, and I have structured an optimal response framework to address your prompt. How would you like to proceed?";
+      
+      const textDiv = document.createElement('div');
+      textDiv.className = 'message-text';
+      textDiv.textContent = responseText;
+      contentDiv.appendChild(textDiv);
+      
+      scrollToBottom();
+    }, responseDelay);
+  }
+
+  function scrollToBottom() {
+    chatContainer.parentElement.scrollTop = chatContainer.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
